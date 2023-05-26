@@ -162,6 +162,7 @@ namespace CppCLRWinFormsProject {
 			// 
 			// button6
 			// 
+			this->button6->Enabled = false;
 			this->button6->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->button6->Location = System::Drawing::Point(284, 14);
 			this->button6->Name = L"button6";
@@ -173,6 +174,7 @@ namespace CppCLRWinFormsProject {
 			// 
 			// button5
 			// 
+			this->button5->Enabled = false;
 			this->button5->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->button5->Location = System::Drawing::Point(249, 14);
 			this->button5->Name = L"button5";
@@ -184,6 +186,7 @@ namespace CppCLRWinFormsProject {
 			// 
 			// button4
 			// 
+			this->button4->Enabled = false;
 			this->button4->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->button4->Location = System::Drawing::Point(214, 14);
 			this->button4->Name = L"button4";
@@ -195,6 +198,7 @@ namespace CppCLRWinFormsProject {
 			// 
 			// button3
 			// 
+			this->button3->Enabled = false;
 			this->button3->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->button3->Location = System::Drawing::Point(124, 14);
 			this->button3->Name = L"button3";
@@ -206,6 +210,7 @@ namespace CppCLRWinFormsProject {
 			// 
 			// button2
 			// 
+			this->button2->Enabled = false;
 			this->button2->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->button2->Location = System::Drawing::Point(84, 14);
 			this->button2->Name = L"button2";
@@ -255,16 +260,20 @@ namespace CppCLRWinFormsProject {
 		}
 #pragma endregion
 
+		//EDITABLE CODE STARTS HERE
+
 		array<String^>^ files;
 		String^ path;
 		int currentIndex;
 		const int zoomLevel = 100;
 		int zooms = 0;
 
-
+	//CLOSE BUTTON
 	private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
 		pictureBox1->ImageLocation = "";
 	}
+
+	//OPEN BUTTON
 	private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (ofd->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
 			pictureBox1->ImageLocation = ofd->FileName;
@@ -280,10 +289,22 @@ namespace CppCLRWinFormsProject {
 				}
 			}
 		}
+
+		//(NEW CHANGE 05/26/2023)
+		button2->Enabled = true;
+		button3->Enabled = true;
+		
+		button5->Enabled = true;
+		button6->Enabled = true;
+
 	}
+
+	//RESET BUTTON
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		Application::Restart();
 	}
+
+	//NEXT BUTTON
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 		if(currentIndex != files->Length - 1)
 		{
@@ -292,6 +313,8 @@ namespace CppCLRWinFormsProject {
 		}
 		pictureBox1->ImageLocation = files[currentIndex];
 	}
+
+	//BACK BUTTON
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (currentIndex != 0)
 		{
@@ -300,25 +323,40 @@ namespace CppCLRWinFormsProject {
 		}
 		pictureBox1->ImageLocation = files[currentIndex];
 	}
+
+	//ZOOM IN BUTTON
 	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 		pictureBox1->Top -= zoomLevel / 2;
 		pictureBox1->Left -= zoomLevel / 2;
 		pictureBox1->Height += zoomLevel;
 		pictureBox1->Width += zoomLevel;
 		zooms++;
+
+		//(NEW CHANGE 05/26/2023)
+		button4->Enabled = true;
 	}
+
+	//ZOOM OUT BUTTON
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+
 		pictureBox1->Top += zoomLevel / 2;
 		pictureBox1->Left += zoomLevel / 2;
 		pictureBox1->Height -= zoomLevel;
 		pictureBox1->Width -= zoomLevel;
 		zooms--;
+
+		//(NEW CHANGE 05/26/2023)
+		if (zooms == 0) {
+			button4->Enabled = false;
+		}
 	}
+
+	//RESET DEFAULT ZOOM BUTTON
 	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
 		int newZoom = zooms;
 		if (zooms > 0)
 		{
-			for (int i = 0; i < newZoom-1; i++)
+			for (int i = 0; i < newZoom; i++)
 			{
 				button4->PerformClick();
 
