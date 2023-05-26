@@ -288,15 +288,13 @@ namespace CppCLRWinFormsProject {
 					break;
 				}
 			}
+			//(NEW CHANGE 05/26/2023)
+			button2->Enabled = true;
+			button3->Enabled = true;
+
+			button5->Enabled = true;
+			button6->Enabled = true;
 		}
-
-		//(NEW CHANGE 05/26/2023)
-		button2->Enabled = true;
-		button3->Enabled = true;
-		
-		button5->Enabled = true;
-		button6->Enabled = true;
-
 	}
 
 	//RESET BUTTON
