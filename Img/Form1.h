@@ -271,6 +271,34 @@ namespace CppCLRWinFormsProject {
 	//CLOSE BUTTON
 	private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
 		pictureBox1->ImageLocation = "";
+
+		//(NEW CHANGE 05/26/2023)
+
+		//NEW CHANGE (CLOSE BUTTON DOES THE DEFAULT ZOOM CODE TO RESET THE ZOOM)
+		int newZoom = zooms;
+		if (zooms > 0)
+		{
+			for (int i = 0; i < newZoom; i++)
+			{
+				button4->PerformClick();
+
+			}
+		}
+
+		if (zooms < 0)
+		{
+			for (int i = 0; i > newZoom; i--)
+			{
+				button5->PerformClick();
+
+			}
+		}
+
+		zooms = 0;
+
+		button4->Enabled = false;
+		button5->Enabled = false;
+		button6->Enabled = false;
 	}
 
 	//OPEN BUTTON
@@ -310,6 +338,10 @@ namespace CppCLRWinFormsProject {
 
 		}
 		pictureBox1->ImageLocation = files[currentIndex];
+
+		//(NEW CHANGE 05/26/2023)
+		button5->Enabled = true;
+		button6->Enabled = true;
 	}
 
 	//BACK BUTTON
@@ -320,6 +352,10 @@ namespace CppCLRWinFormsProject {
 
 		}
 		pictureBox1->ImageLocation = files[currentIndex];
+
+		//(NEW CHANGE 05/26/2023)
+		button5->Enabled = true;
+		button6->Enabled = true;
 	}
 
 	//ZOOM IN BUTTON
