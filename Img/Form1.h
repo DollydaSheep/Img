@@ -285,14 +285,7 @@ namespace CppCLRWinFormsProject {
 			}
 		}
 
-		if (zooms < 0)
-		{
-			for (int i = 0; i > newZoom; i--)
-			{
-				button5->PerformClick();
-
-			}
-		}
+		
 
 		zooms = 0;
 
@@ -397,14 +390,7 @@ namespace CppCLRWinFormsProject {
 			}
 		}
 
-		if (zooms < 0)
-		{
-			for (int i = 0; i > newZoom; i--)
-			{
-				button5->PerformClick();
-
-			}
-		}
+		
 
 		zooms = 0; 
 	}
